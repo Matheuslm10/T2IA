@@ -1,9 +1,9 @@
 import pandas as pd
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import StratifiedKFold
+from Combination import Combination
 
-class Utilities:
+class KNNUtils:
 
     def findBestParameters(X, y, skf):
         k_range = list(range(1, 41))
@@ -18,14 +18,11 @@ class Utilities:
         results = pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
         ordered_results = results.sort_values('mean_test_score', ascending=False)
         target_combinations = ordered_results.iloc[:5, 0:3]
-        # print('MELHOR ACURARICA: ', grid.best_score_)
-        # print('MELHOR PARÂMETRO: ', grid.best_params_)
-        # print('MELHOR ESTIMADOR: ', grid.best_estimator_)
 
         return ordered_results, target_combinations
 
-    def passParameters(target_combinations):
-        knn_combinations = []
+    def getCombinations(target_combinations):
+        combinations = []
 
         # PERCORRE AS 5 COMBINAÇÕES
         for row in range(1, target_combinations.shape[0] + 1):
@@ -38,25 +35,6 @@ class Utilities:
                                                         weights=weights)
             accuracy_list, log_list = [], []
             comb = Combination(classifier_algorithm, accuracy_list, None, None, log_list, None, None)
-            knn_combinations.append(comb)
+            combinations.append(comb)
 
-        return knn_combinations
-
-class Combination:
-
-    classifier = None
-    accuracys_list = []
-    mean_accuracy = None
-    std_accuracy = None
-    log_loss_list = []
-    mean_log_loss = None
-    std_log_loss = None
-
-    def __init__(self, classifier, accuracys_list, mean_accuracy, std_accuracy, log_loss_list, mean_log_loss, std_log_loss):
-        self.classifier = classifier
-        self.accuracys_list = accuracys_list
-        self.mean_accuracy = mean_accuracy
-        self.std_accuracy = std_accuracy
-        self.log_loss_list = log_loss_list
-        self.mean_log_loss = mean_log_loss
-        self.std_log_loss = std_log_loss
+        return combinations

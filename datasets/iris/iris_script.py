@@ -1,21 +1,17 @@
 import numpy as np
-import pandas as pd
+
 from datasets.DataNormalizer import DataNormalizer as normalizer
-from datasets.GridSearcher import GridSearcher as gridsearcher
-from datasets.Combination import Combination as combination
-from classifiers_utils.KNNUtils import Utilities as knn_utilities
-from classifiers_utils.KNNUtils import Combination as combination
+from classifiers_utils.KNNUtils import KNNUtils
+from classifiers_utils.LogisticRegressionUtils import LogisticRegressionUtils
+from classifiers_utils.DecisionTreeUtils import DecisionTreeUtils
+from classifiers_utils.MLPUtils import MLPUtils
+from classifiers_utils.NaiveBayesUtils import NaiveBayesUtils
 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.neural_network import MLPClassifier
-from sklearn import tree
-
-from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
 
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import log_loss
+
 
 def evaluate_classifier(classifier_combinations, X, y):
 
@@ -60,26 +56,22 @@ if __name__ == '__main__':
 
     skf = StratifiedKFold(n_splits=10, shuffle=False)
 
-    results, target_combinations = gridsearcher.findBestParametersForKNN(X, y, skf)
-
-    knn_combinations = []
-
-    # PERCORRE AS 5 COMBINAÇÕES
-    for row in range(1, target_combinations.shape[0] + 1):
-        dictionary = target_combinations.iloc[(row - 1):(row), 2:3]['params'].values[0]
-        algorithm = dictionary.get('algorithm')
-        leaf_size = dictionary.get('leaf_size')
-        n_neighbors = dictionary.get('n_neighbors')
-        weights = dictionary.get('weights')
-        classifier_algorithm = KNeighborsClassifier(algorithm=algorithm, leaf_size=leaf_size, n_neighbors=n_neighbors, weights=weights)
-        accuracy_list, log_list = [], []
-        comb = combination(classifier_algorithm, accuracy_list, None, None, log_list, None, None)
-        knn_combinations.append(comb)
-
+    results, target_combinations = KNNUtils.findBestParameters(X, y, skf)
+    knn_combinations = KNNUtils.getCombinations(target_combinations)
     evaluate_classifier(knn_combinations, X, y)
 
-    # calcularMediaAcuracia("REGRESSAO LOGISTICA:", LogisticRegression(solver='lbfgs', max_iter=1000, multi_class='multinomial'))
+    results2, target_combinations2 = LogisticRegressionUtils.findBestParameters(X, y, skf)
+    logreg_combinations = LogisticRegressionUtils.getCombinations(target_combinations2)
+    evaluate_classifier(logreg_combinations, X, y)
 
-    # calcularMediaAcuracia("ARVORE DE DECISAO:", tree.DecisionTreeClassifier())
+    results3, target_combinations3 = DecisionTreeUtils.findBestParameters(X, y, skf)
+    dectree_combinations = DecisionTreeUtils.getCombinations(target_combinations3)
+    evaluate_classifier(dectree_combinations, X, y)
 
-    # calcularMediaAcuracia("REDES NEURAIS MLP:", MLPClassifier(max_iter=1000))
+    results4, target_combinations4 = MLPUtils.findBestParameters(X, y, skf)
+    mlp_combinations = MLPUtils.getCombinations(target_combinations4)
+    evaluate_classifier(mlp_combinations, X, y)
+
+    results5, target_combinations5 = NaiveBayesUtils.findBestParameters(X, y, skf)
+    naivebayes_combinations = NaiveBayesUtils.getCombinations(target_combinations5)
+    evaluate_classifier(naivebayes_combinations, X, y)
