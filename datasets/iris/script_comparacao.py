@@ -7,6 +7,7 @@ from sklearn import tree
 
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
+from sklearn import datasets
 
 
 def calcularMediaAcuracia(nome, modelo):
@@ -18,35 +19,11 @@ def calcularMediaAcuracia(nome, modelo):
     print()
 
 
-def lerDataset():
-    arquivo = open('iris.data', 'r')
-
-    dados = []
-    for linha in arquivo.readlines():
-        linha = linha.replace('\n', '')
-        dados.append(linha.split(','))
-
-    del (dados[-1])
-
-    for linha in dados:
-        if (linha[-1] == 'Iris-setosa'):
-            linha[-1] = '0'
-        elif (linha[-1] == 'Iris-versicolor'):
-            linha[-1] = '1'
-        elif (linha[-1] == 'Iris-virginica'):
-            linha[-1] = '2'
-
-    dados = np.array(dados).astype(float)
-
-    return dados
-
-
 if __name__ == '__main__':
-    dados = lerDataset()
+    iris = datasets.load_iris()
 
-    X = dados[:, 0:4]
-    y = dados[:, [4]]
-    y.shape = (150,)
+    X = iris.data
+    y = iris.target
 
     calcularMediaAcuracia("REGRESSAO LOGISTICA:", LogisticRegression(solver='lbfgs', max_iter=1000, multi_class='multinomial'))
 
