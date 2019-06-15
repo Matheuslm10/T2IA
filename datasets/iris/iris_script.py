@@ -11,13 +11,32 @@ from sklearn import tree
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
 
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import log_loss
 
-def calcularMediaAcuracia(nome, modelo):
+
+def avaliar(classificador, X, y):
+    print(classificador)
+    classificador.fit(X, y)
+    accuracy_list, log_list = [], []
     skf = StratifiedKFold(n_splits=10, shuffle=False)
-    acuraciaPorFold = cross_val_score(modelo, X, y, cv=skf)
-    print(modelo)
-    print("Acurácias:", acuraciaPorFold)
-    print("Acurácia (Média):", np.mean(acuraciaPorFold))
+
+    for train_index, test_index in skf.split(X, y):
+        X_train, X_test = X[train_index], X[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        # predict
+        prediction = classificador.predict(X_test)
+        prediction_prob = classificador.predict_proba(X_test)
+
+        # accuracy
+        accuracy_list.append(accuracy_score(y_test, prediction))
+
+        # log loss
+        log_list.append(log_loss(y_test, prediction_prob))
+
+    print("Accuracy (average):", np.mean(accuracy_list))
+    print("Log loss (average):", np.mean(log_list))
     print()
 
 
@@ -42,7 +61,8 @@ if __name__ == '__main__':
         leaf_size = dicionario.get('leaf_size')
         n_neighbors = dicionario.get('n_neighbors')
         weights = dicionario.get('weights')
-        modelo = KNeighborsClassifier(algorithm=algorithm, leaf_size=leaf_size, n_neighbors=n_neighbors, weights=weights)
+        classificador = KNeighborsClassifier(algorithm=algorithm, leaf_size=leaf_size, n_neighbors=n_neighbors, weights=weights)
+        avaliar(classificador, X, y)
 
 
 

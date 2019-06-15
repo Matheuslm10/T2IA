@@ -16,10 +16,9 @@ class GridSearcher:
         grid.fit(X, y)
         resultados = pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
         resultados_ordenados = resultados.sort_values('mean_test_score', ascending=False)
-
-        print('MELHOR ACURARICA: ', grid.best_score_)
-        print('MELHOR PARÂMETRO: ', grid.best_params_)
-        print('MELHOR ESTIMADOR: ', grid.best_estimator_)
         combinacoesAlvo = resultados_ordenados.iloc[:5, 0:3]
+        #print('MELHOR ACURARICA: ', grid.best_score_)
+        #print('MELHOR PARÂMETRO: ', grid.best_params_)
+        #print('MELHOR ESTIMADOR: ', grid.best_estimator_)
 
         return resultados_ordenados, combinacoesAlvo
