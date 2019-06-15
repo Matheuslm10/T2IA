@@ -6,10 +6,10 @@ from sklearn.model_selection import StratifiedKFold
 class GridSearcher:
 
     def findBestParametersForKNN(X, y, skf):
-        k_range = list(range(1, 3))
+        k_range = list(range(1, 41))
         weights_options = ['uniform', 'distance']
         algorithm_options = ['auto', 'ball_tree', 'kd_tree', 'brute']
-        leaf_size_range = list(range(1, 2))
+        leaf_size_range = list(range(1, 21))
 
         param_grid = dict(n_neighbors=k_range, weights=weights_options, algorithm=algorithm_options, leaf_size=leaf_size_range)
         grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=skf, scoring='accuracy', return_train_score=False)
