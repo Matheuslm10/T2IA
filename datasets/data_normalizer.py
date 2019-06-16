@@ -37,7 +37,7 @@ class DataNormalizer:
 
     def process_data(self):
         """
-            # Converts the data values ​​based on the attribute dictionary
+            Converts the data values ​​based on the attribute dictionary
         :return numpy.array: ready-to-use data
         """
         ready_data = []
