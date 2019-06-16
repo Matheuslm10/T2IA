@@ -11,8 +11,10 @@ from classifiers_utils.decision_tree_utils import DecisionTreeUtils
 from classifiers_utils.mlp_utils import MLPUtils
 from classifiers_utils.naive_bayes_utils import NaiveBayesUtils
 
+from Combination import Combination
 
-def evaluate_classifier(classifier_combinations, x, y, skf):
+
+def evaluate_classifier(classifier_combinations, x, y):
 
     skf = StratifiedKFold(n_splits=10, shuffle=False)
 
@@ -48,26 +50,27 @@ def evaluate_classifier(classifier_combinations, x, y, skf):
 
 class EvaluateClassifiers:
 
-    def __init__(self, x, y):
+    dec_tree_combinations = None
+    knn_combinations = None
+    log_reg_combinations = None
+    mlp_combinations = None
+    naive_bayes_combinations = None
 
-        skf = StratifiedKFold(n_splits=10, shuffle=False)
+    def evaluate_classifiers(self, x, y):
 
-        results, target_combinations1 = KNNUtils.find_best_parameters(x, y, skf)
-        knn_combinations = KNNUtils.get_combinations(target_combinations1)
-        evaluate_classifier(knn_combinations, x, y, skf)
+        comb = Combination
 
-        results2, target_combinations2 = LogisticRegressionUtils.find_best_parameters(x, y, skf)
-        log_reg_combinations = LogisticRegressionUtils.get_combinations(target_combinations2)
-        evaluate_classifier(log_reg_combinations, x, y, skf)
+        dec_tree_combinations = comb.get_dec_tree_combinations(self.dec_tree_combinations)
+        evaluate_classifier(dec_tree_combinations, x, y)
 
-        results3, target_combinations3 = DecisionTreeUtils.find_best_parameters(x, y, skf)
-        dec_tree_combinations = DecisionTreeUtils.get_combinations(target_combinations3)
-        evaluate_classifier(dec_tree_combinations, x, y, skf)
+        knn_combinations = comb.get_knn_combinations(self.knn_combinations)
+        evaluate_classifier(knn_combinations, x, y)
 
-        results4, target_combinations4 = MLPUtils.find_best_parameters(x, y, skf)
-        mlp_combinations = MLPUtils.get_combinations(target_combinations4)
-        evaluate_classifier(mlp_combinations, x, y, skf)
+        log_reg_combinations = comb.get_log_greg_combinations(self.log_reg_combinations)
+        evaluate_classifier(log_reg_combinations, x, y)
 
-        results5, target_combinations5 = NaiveBayesUtils.find_best_parameters(x, y, skf)
-        naive_bayes_combinations = NaiveBayesUtils.get_combinations(target_combinations5)
-        evaluate_classifier(naive_bayes_combinations, x, y, skf)
+        mlp_combinations = comb.get_mlp_combinations(self.mlp_combinations)
+        evaluate_classifier(mlp_combinations, x, y)
+
+        naive_bayes_combinations = comb.get_naive_bayes_combinations(self.naive_bayes_combinations)
+        evaluate_classifier(naive_bayes_combinations, x, y)

@@ -1,10 +1,10 @@
 from datasets.data_normalizer import DataNormalizer as Normalizer
 from sklearn.model_selection import StratifiedKFold
-from grid_searchers.dectree_gs import DECTREE_GS
+from grid_searchers.dec_tree_gs import DECTREE_GS
 from grid_searchers.knn_gs import KNN_GS
-from grid_searchers.logreg_gs import LOGREG_GS
+from grid_searchers.log_reg_gs import LOGREG_GS
 from grid_searchers.mlp_gs import MLP_GS
-from grid_searchers.naivebayes_gs import NAIVEBAYES_GS
+from grid_searchers.naive_bayes_gs import NAIVEBAYES_GS
 
 
 if __name__ == '__main__':
