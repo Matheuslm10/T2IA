@@ -1,5 +1,5 @@
 from datasets.data_normalizer import DataNormalizer as Normalizer
-from datasets.evaluate_classifier import EvaluateClassifier
+from datasets.classifier_evaluation import EvaluateClassifiers
 
 
 if __name__ == '__main__':
@@ -14,4 +14,4 @@ if __name__ == '__main__':
 
     print('Read2')
 
-    EvaluateClassifier(x, y)
+    EvaluateClassifiers(x, y)

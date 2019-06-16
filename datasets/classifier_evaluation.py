@@ -46,7 +46,7 @@ def evaluate_classifier(classifier_combinations, x, y, skf):
         print("Standard deviation of Log Loss:", comb.std_log_loss)
 
 
-class EvaluateClassifier:
+class EvaluateClassifiers:
 
     def __init__(self, x, y):
 
