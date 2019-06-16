@@ -1,15 +1,15 @@
 from datasets.data_normalizer import DataNormalizer as Normalizer
 from sklearn.model_selection import StratifiedKFold
-from grid_searchers.dec_tree_gs import DECTREE_GS
-from grid_searchers.knn_gs import KNN_GS
-from grid_searchers.log_reg_gs import LOGREG_GS
-from grid_searchers.mlp_gs import MLP_GS
-from grid_searchers.naive_bayes_gs import NAIVEBAYES_GS
+from grid_searchers.dec_tree_gs import DecTreeGS
+from grid_searchers.knngs import KNNGS
+from grid_searchers.log_reg_gs import LogRegGS
+from grid_searchers.mlpgs import MLPGS
+from grid_searchers.naive_bayes_gs import NaiveBayes_GS
 
 
 if __name__ == '__main__':
 
-    data = Normalizer('./iris.data').ready_data
+    data = Normalizer('./breast-cancer-wisconsin.data').ready_data
 
     x = data[:, 0:len(data[0])-1]
     y = data[:, len(data[0])-1]
@@ -17,10 +17,9 @@ if __name__ == '__main__':
 
     skf = StratifiedKFold(n_splits=10, shuffle=False)
     # clf_gs = KNN_GS(x, y, skf)
-    clf_gs = DECTREE_GS(x, y, skf)
+    clf_gs = DecTreeGS(x, y, skf)
     # clf_gs = LOGREG_GS(x, y, skf)
     # clf_gs = MLP_GS(x, y, skf)
     # clf_gs = NAIVEBAYES_GS(x, y, skf)
 
     results = clf_gs.ordered_results
-    combinations = clf_gs.target_combinations

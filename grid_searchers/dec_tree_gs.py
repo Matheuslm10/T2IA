@@ -3,9 +3,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import tree
 
 
-class DECTREE_GS:
+class DecTreeGS:
     ordered_results = None
-    target_combinations = None
 
     def __init__(self, x, y, skf):
         criterion_options = ['gini', 'entropy']
@@ -17,8 +16,5 @@ class DECTREE_GS:
                             return_train_score=False)
         grid.fit(x, y)
         results = pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
-        ordered_results = results.sort_values('mean_test_score', ascending=False)
-        target_combinations = ordered_results.iloc[:5, 0:3]
 
-        self.ordered_results = ordered_results
-        self.target_combinations = target_combinations
+        self.ordered_results = results.sort_values('mean_test_score', ascending=False)

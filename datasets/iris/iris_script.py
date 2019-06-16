@@ -47,11 +47,11 @@ if __name__ == '__main__':
         {'alpha': 0.8, 'fit_prior': True},
     ]
 
-    evaluate_classifiers = EvaluateClassifiers()
-    evaluate_classifiers.dec_tree_combinations = dec_tree_combinations
-    evaluate_classifiers.knn_combinations = knn_combinations
-    evaluate_classifiers.log_reg_combinations = log_reg_combinations
-    evaluate_classifiers.mlp_combinations = mlp_combinations
-    evaluate_classifiers.naive_bayes_combinations = naive_bayes_combinations
+    eval_clfs = EvaluateClassifiers()
+    eval_clfs.dec_tree_combinations = dec_tree_combinations
+    eval_clfs.knn_combinations = knn_combinations
+    eval_clfs.log_reg_combinations = log_reg_combinations
+    eval_clfs.mlp_combinations = mlp_combinations
+    eval_clfs.naive_bayes_combinations = naive_bayes_combinations
 
-    evaluate_classifiers.evaluate_classifiers(x, y)
+    eval_clfs.evaluate_classifiers(x, y)

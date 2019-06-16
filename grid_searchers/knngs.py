@@ -4,9 +4,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import StratifiedKFold
 
 
-class KNN_GS:
+class KNNGS:
     ordered_results = None
-    target_combinations = None
 
     def __init__(self, x, y, skf):
         k_range = list(range(1, 4))
@@ -18,8 +17,5 @@ class KNN_GS:
         grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=skf, scoring='accuracy', return_train_score=False)
         grid.fit(x, y)
         results = pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
-        ordered_results = results.sort_values('mean_test_score', ascending=False)
-        target_combinations = ordered_results.iloc[:5, 0:3]
 
-        self.ordered_results = ordered_results
-        self.target_combinations = target_combinations
+        self.ordered_results = results.sort_values('mean_test_score', ascending=False)

@@ -3,9 +3,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
 
 
-class LOGREG_GS:
+class LogRegGS:
     ordered_results = None
-    target_combinations = None
 
     def __init__(self, x, y, skf):
         penalty_options = ['l1', 'l2']
@@ -16,8 +15,5 @@ class LOGREG_GS:
         grid = GridSearchCV(LogisticRegression(), param_grid, cv=skf, scoring='accuracy', return_train_score=False)
         grid.fit(x, y)
         results = pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
-        ordered_results = results.sort_values('mean_test_score', ascending=False)
-        target_combinations = ordered_results.iloc[:5, 0:3]
 
-        self.ordered_results = ordered_results
-        self.target_combinations = target_combinations
+        self.ordered_results = results.sort_values('mean_test_score', ascending=False)

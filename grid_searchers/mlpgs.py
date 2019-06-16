@@ -3,9 +3,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.neural_network import MLPClassifier
 
 
-class MLP_GS:
+class MLPGS:
     ordered_results = None
-    target_combinations = None
 
     def __init__(self, x, y, skf):
         solver_options = ['lbfgs']
@@ -16,8 +15,5 @@ class MLP_GS:
         grid = GridSearchCV(MLPClassifier(), param_grid, cv=skf, scoring='accuracy', return_train_score=False)
         grid.fit(x, y)
         results = pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
-        ordered_results = results.sort_values('mean_test_score', ascending=False)
-        target_combinations = ordered_results.iloc[:5, 0:3]
 
-        self.ordered_results = ordered_results
-        self.target_combinations = target_combinations
+        self.ordered_results == results.sort_values('mean_test_score', ascending=False)
