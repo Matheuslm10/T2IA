@@ -22,8 +22,8 @@ if __name__ == '__main__':
     skf = StratifiedKFold(n_splits=10, shuffle=False)
     # clf_gs = KNNGS(x, y, skf)
     # clf_gs = DecTreeGS(x, y, skf)
-    clf_gs = LogRegGS(x, y, skf)
-    # clf_gs = MLPGS(x, y, skf)
+    # clf_gs = LogRegGS(x, y, skf)
+    clf_gs = MLPGS(x, y, skf)
     # clf_gs = NaiveBayes_GS(x, y, skf)
 
     ordered_results = clf_gs.ordered_results

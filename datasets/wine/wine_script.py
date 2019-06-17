@@ -22,11 +22,11 @@ if __name__ == '__main__':
         {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
     ]
     knn_combinations = [
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
+        {'n_neighbors': 10, 'weights': 'distance', 'algorithm': 'ball_tree', 'leaf_size': 40},
+        {'n_neighbors': 10, 'weights': 'distance', 'algorithm': 'kd_tree', 'leaf_size': 65},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'ball_tree', 'leaf_size': 45},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'kd_tree', 'leaf_size': 60},
+        {'n_neighbors': 15, 'weights': 'uniform', 'algorithm': 'kd_tree', 'leaf_size': 60},
     ]
 
     log_reg_combinations = [

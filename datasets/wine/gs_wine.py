@@ -15,14 +15,14 @@ if __name__ == '__main__':
 
     data = Normalizer('./wine.data').ready_data
 
-    x = data[:, 0:len(data[0])-1]
-    y = data[:, len(data[0])-1]
+    x = data[:, 1:]
+    y = data[:, 0]
     y.shape = (len(x),)
 
     skf = StratifiedKFold(n_splits=10, shuffle=False)
-    clf_gs = KNNGS(x, y, skf)
+    # clf_gs = KNNGS(x, y, skf)
     # clf_gs = DecTreeGS(x, y, skf)
-    # clf_gs = LogRegGS(x, y, skf)
+    clf_gs = LogRegGS(x, y, skf)
     # clf_gs = MLPGS(x, y, skf)
     # clf_gs = NaiveBayes_GS(x, y, skf)
 

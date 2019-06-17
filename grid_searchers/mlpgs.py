@@ -14,9 +14,9 @@ class MLPGS:
 
     def __init__(self, x, y, skf):
         solver_options = ['lbfgs']
-        max_iter_options = [100, 500, 1000, 1500, 2000]
-        random_state_options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        hidden_layer_sizes_options = np.arange(8, 12)
+        max_iter_options = [100, 500]
+        random_state_options = [6, 7, 8, 9]
+        hidden_layer_sizes_options = np.arange(9, 12)
 
         param_grid = dict(solver=solver_options, max_iter=max_iter_options, random_state=random_state_options, hidden_layer_sizes=hidden_layer_sizes_options)
         grid = GridSearchCV(MLPClassifier(), param_grid, cv=skf, scoring='accuracy', return_train_score=False)
