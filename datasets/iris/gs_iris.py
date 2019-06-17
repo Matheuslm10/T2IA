@@ -16,10 +16,11 @@ if __name__ == '__main__':
     y.shape = (len(x),)
 
     skf = StratifiedKFold(n_splits=10, shuffle=False)
-    # clf_gs = KNN_GS(x, y, skf)
-    clf_gs = DecTreeGS(x, y, skf)
-    # clf_gs = LOGREG_GS(x, y, skf)
-    # clf_gs = MLP_GS(x, y, skf)
-    # clf_gs = NAIVEBAYES_GS(x, y, skf)
+    # clf_gs = KNNGS(x, y, skf)
+    # clf_gs = DecTreeGS(x, y, skf)
+    clf_gs = LogRegGS(x, y, skf)
+    # clf_gs = MLPGS(x, y, skf)
+    # clf_gs = NaiveBayes_GS(x, y, skf)
 
-    results = clf_gs.ordered_results
+    ordered_results = clf_gs.ordered_results
+    best_results = clf_gs.best_results

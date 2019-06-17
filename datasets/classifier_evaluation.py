@@ -5,12 +5,6 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import log_loss
 
-from classifiers_utils.knn_utils import KNNUtils
-from classifiers_utils.logistic_regression_utils import LogisticRegressionUtils
-from classifiers_utils.decision_tree_utils import DecisionTreeUtils
-from classifiers_utils.mlp_utils import MLPUtils
-from classifiers_utils.naive_bayes_utils import NaiveBayesUtils
-
 from Combination import Combination
 
 
@@ -60,17 +54,27 @@ class EvaluateClassifiers:
 
         comb = Combination
 
+        print()
+        print("Executando Decision Tree------------------------------------------------------------")
         dec_tree_combinations = comb.get_dec_tree_combinations(self.dec_tree_combinations)
         evaluate_classifier(dec_tree_combinations, x, y)
 
+        print()
+        print("Executando KNN----------------------------------------------------------------------")
         knn_combinations = comb.get_knn_combinations(self.knn_combinations)
         evaluate_classifier(knn_combinations, x, y)
 
-        log_reg_combinations = comb.get_log_greg_combinations(self.log_reg_combinations)
+        print()
+        print("Executando Logistic Regression------------------------------------------------------")
+        log_reg_combinations = comb.get_log_reg_combinations(self.log_reg_combinations)
         evaluate_classifier(log_reg_combinations, x, y)
 
+        print()
+        print("Executando Redes Neurais MLP--------------------------------------------------------")
         mlp_combinations = comb.get_mlp_combinations(self.mlp_combinations)
         evaluate_classifier(mlp_combinations, x, y)
 
+        print()
+        print("Executando Naive Bayes--------------------------------------------------------------")
         naive_bayes_combinations = comb.get_naive_bayes_combinations(self.naive_bayes_combinations)
         evaluate_classifier(naive_bayes_combinations, x, y)

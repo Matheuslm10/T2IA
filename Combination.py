@@ -34,8 +34,8 @@ class Combination:
             criterion = dictionary.get('criterion')
             splitter = dictionary.get('splitter')
             max_depth = dictionary.get('max_depth')
-            classifier_algorithm = tree.DecisionTreeClassifier(criterion=criterion, splitter=splitter,
-                                                               max_depth=max_depth)
+            min_samples_split = dictionary.get('min_samples_split')
+            classifier_algorithm = tree.DecisionTreeClassifier(criterion=criterion, splitter=splitter, max_depth=max_depth, min_samples_split=min_samples_split)
             accuracy_list, log_list = [], []
             comb = Combination(classifier_algorithm, accuracy_list, None, None, log_list, None, None)
             combinations.append(comb)
@@ -62,15 +62,18 @@ class Combination:
         return combinations
 
     @staticmethod
-    def get_log_greg_combinations(target_combinations):
+    def get_log_reg_combinations(target_combinations):
         combinations = []
 
         # Go through the 5 combinations
         for dictionary in target_combinations:
+            C = dictionary.get('C')
+            max_iter = dictionary.get('max_iter')
+            multi_class = dictionary.get('multi_class')
             penalty = dictionary.get('penalty')
             solver = dictionary.get('solver')
-            multi_class = dictionary.get('multi_class')
-            classifier_algorithm = LogisticRegression(penalty=penalty, solver=solver, multi_class=multi_class)
+
+            classifier_algorithm = LogisticRegression(C=C, max_iter=max_iter, multi_class=multi_class, penalty=penalty, solver=solver)
             accuracy_list, log_list = [], []
             comb = Combination(classifier_algorithm, accuracy_list, None, None, log_list, None, None)
             combinations.append(comb)
@@ -86,7 +89,8 @@ class Combination:
             solver = dictionary.get('solver')
             max_iter = dictionary.get('max_iter')
             random_state = dictionary.get('random_state')
-            classifier_algorithm = MLPClassifier(solver=solver, max_iter=max_iter, random_state=random_state)
+            hidden_layer_sizes = dictionary.get('hidden_layer_sizes')
+            classifier_algorithm = MLPClassifier(solver=solver, max_iter=max_iter, random_state=random_state, hidden_layer_sizes=hidden_layer_sizes)
             accuracy_list, log_list = [], []
             comb = Combination(classifier_algorithm, accuracy_list, None, None, log_list, None, None)
             combinations.append(comb)

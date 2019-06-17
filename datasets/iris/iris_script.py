@@ -11,40 +11,39 @@ if __name__ == '__main__':
     y.shape = (len(x),)
 
     dec_tree_combinations = [
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
+        {'criterion': 'entropy', 'splitter': 'random', 'max_depth': 260, 'min_samples_split': 10},
+        {'criterion': 'gini', 'splitter': 'random', 'max_depth': 85, 'min_samples_split': 30},
+        {'criterion': 'entropy', 'splitter': 'random', 'max_depth': 105, 'min_samples_split': 30},
+        {'criterion': 'entropy', 'splitter': 'random', 'max_depth': 190, 'min_samples_split': 10},
+        {'criterion': 'entropy', 'splitter': 'random', 'max_depth': 245, 'min_samples_split': 30},
     ]
     knn_combinations = [
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'ball_tree', 'leaf_size': 55},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'ball_tree', 'leaf_size': 30},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'auto', 'leaf_size': 20},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'auto', 'leaf_size': 40},
+        {'n_neighbors': 15, 'weights': 'distance', 'algorithm': 'brute', 'leaf_size': 5},
     ]
-
     log_reg_combinations = [
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
+        {'C': 243.74441501222216, 'max_iter': 1500, 'multi_class': 'auto', 'penalty': 'l2', 'solver':'liblinear'},
+        {'C': 258.2618760682677, 'max_iter': 1500, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
+        {'C': 258.2618760682677, 'max_iter': 1000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
+        {'C': 243.74441501222216, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
+        {'C': 10.116379797662075, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l1', 'solver': 'liblinear'},
     ]
     mlp_combinations = [
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
+        {'solver': 'lbfgs', 'max_iter': 1000, 'random_state': 3, 'hidden_layer_sizes': 8},
+        {'solver': 'lbfgs', 'max_iter': 100, 'random_state': 5, 'hidden_layer_sizes': 8},
+        {'solver': 'lbfgs', 'max_iter': 1500, 'random_state': 3, 'hidden_layer_sizes': 8},
+        {'solver': 'lbfgs', 'max_iter': 2000, 'random_state': 3, 'hidden_layer_sizes': 8},
+        {'solver': 'lbfgs', 'max_iter': 100, 'random_state': 8, 'hidden_layer_sizes': 8},
     ]
     naive_bayes_combinations = [
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
+        {'alpha': 0.01, 'fit_prior': True},
+        {'alpha': 0.01, 'fit_prior': False},
+        {'alpha': 1.0, 'fit_prior': True},
+        {'alpha': 0.9, 'fit_prior': False},
+        {'alpha': 0.9, 'fit_prior': True},
     ]
 
     eval_clfs = EvaluateClassifiers()
