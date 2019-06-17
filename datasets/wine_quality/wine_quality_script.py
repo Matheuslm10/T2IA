@@ -37,18 +37,18 @@ if __name__ == '__main__':
         {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
     ]
     mlp_combinations = [
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
+        {'hidden_layer_sizes': 10, 'max_iter': 500, 'random_state': 9, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 9, 'max_iter': 100, 'random_state': 8, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 9, 'max_iter': 500, 'random_state': 8, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 10, 'max_iter': 100, 'random_state': 9, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 100, 'random_state': 7, 'solver': 'lbfgs'},
     ]
     naive_bayes_combinations = [
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
+        {'alpha': 0.01, 'fit_prior': True},
+        {'alpha': 0.3, 'fit_prior': True},
+        {'alpha': 1.0, 'fit_prior': True},
+        {'alpha': 0.9, 'fit_prior': True},
+        {'alpha': 0.8, 'fit_prior': True}
     ]
 
     eval_clfs = EvaluateClassifiers()

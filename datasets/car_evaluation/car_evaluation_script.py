@@ -15,32 +15,32 @@ if __name__ == '__main__':
     y.shape = (len(x),)
 
     dec_tree_combinations = [
-        {'criterion': 'gini', 'splitter': 'random', 'max_depth': 65, 'min_samples_split': 10},
-        {'criterion': 'entropy', 'splitter': 'random', 'max_depth': 85, 'min_samples_split': 10},
-        {'criterion': 'gini', 'splitter': 'random', 'max_depth': 220, 'min_samples_split': 10},
-        {'criterion': 'entropy', 'splitter': 'random', 'max_depth': 50, 'min_samples_split': 10},
-        {'criterion': 'gini', 'splitter': 'random', 'max_depth': 295, 'min_samples_split': 10},
+        {'criterion': 'gini', 'max_depth': 265, 'min_samples_split': 10, 'splitter': 'random'},
+        {'criterion': 'gini', 'max_depth': 205, 'min_samples_split': 10, 'splitter': 'random'},
+        {'criterion': 'entropy', 'max_depth': 15, 'min_samples_split': 10, 'splitter': 'random'},
+        {'criterion': 'gini', 'max_depth': 195, 'min_samples_split': 10, 'splitter': 'random'},
+        {'criterion': 'gini', 'max_depth': 130, 'min_samples_split': 10, 'splitter': 'random'},
     ]
     knn_combinations = [
-        {'n_neighbors': 5, 'weights': 'uniform', 'algorithm': 'brute', 'leaf_size': 45},
-        {'n_neighbors': 5, 'weights': 'uniform', 'algorithm': 'brute', 'leaf_size': 25},
-        {'n_neighbors': 5, 'weights': 'uniform', 'algorithm': 'brute', 'leaf_size': 35},
-        {'n_neighbors': 5, 'weights': 'uniform', 'algorithm': 'brute', 'leaf_size': 10},
-        {'n_neighbors': 5, 'weights': 'uniform', 'algorithm': 'brute', 'leaf_size': 40},
+        {'algorithm': 'brute', 'leaf_size': 45, 'n_neighbors': 5, 'weights': 'uniform'},
+        {'algorithm': 'brute', 'leaf_size': 25, 'n_neighbors': 5, 'weights': 'uniform'},
+        {'algorithm': 'brute', 'leaf_size': 35, 'n_neighbors': 5, 'weights': 'uniform'},
+        {'algorithm': 'brute', 'leaf_size': 10, 'n_neighbors': 5, 'weights': 'uniform'},
+        {'algorithm': 'brute', 'leaf_size': 40, 'n_neighbors': 5, 'weights': 'uniform'},
     ]
     log_reg_combinations = [
+        {'C': 1.059560179277616, 'max_iter': 1500, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
+        {'C': 1.059560179277616, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
         {'C': 1.0, 'max_iter': 1500, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
         {'C': 1.0, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
         {'C': 1.059560179277616, 'max_iter': 1000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
-        {'C': 1.059560179277616, 'max_iter': 1500, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
-        {'C': 1.059560179277616, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
     ]
     mlp_combinations = [
-        {'solver': 'lbfgs', 'max_iter': 500, 'random_state': 7, 'hidden_layer_sizes': 10},
-        {'solver': 'lbfgs', 'max_iter': 500, 'random_state': 9, 'hidden_layer_sizes': 11},
-        {'solver': 'lbfgs', 'max_iter': 100, 'random_state': 9, 'hidden_layer_sizes': 11},
-        {'solver': 'lbfgs', 'max_iter': 500, 'random_state': 7, 'hidden_layer_sizes': 11},
-        {'solver': 'lbfgs', 'max_iter': 500, 'random_state': 6, 'hidden_layer_sizes': 9},
+        {'hidden_layer_sizes': 10, 'max_iter': 500, 'random_state': 7, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 500, 'random_state': 9, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 100, 'random_state': 9, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 500, 'random_state': 7, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 9, 'max_iter': 500, 'random_state': 6, 'solver': 'lbfgs'},
     ]
     naive_bayes_combinations = [
         {'alpha': 0.5, 'fit_prior': True},

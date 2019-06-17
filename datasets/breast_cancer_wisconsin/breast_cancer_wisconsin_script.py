@@ -15,39 +15,42 @@ if __name__ == '__main__':
     y.shape = (len(x),)
 
     dec_tree_combinations = [
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
-        {'criterion': 'gini', 'splitter': 'best', 'max_depth': 8},
+        {'criterion': 'gini', 'max_depth': 30, 'min_samples_split': 50, 'splitter': 'random'},
+        {'criterion': 'gini', 'max_depth': 285, 'min_samples_split': 30, 'splitter': 'random'},
+        {'criterion': 'entropy', 'max_depth': 275, 'min_samples_split': 50, 'splitter': 'random'},
+        {'criterion': 'entropy', 'max_depth': 110, 'min_samples_split': 50, 'splitter': 'random'},
+        {'criterion': 'entropy', 'max_depth': 270, 'min_samples_split': 50, 'splitter': 'random'},
     ]
+
     knn_combinations = [
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
-        {'n_neighbors': 1, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 1},
+        {'algorithm': 'auto', 'leaf_size': 25, 'n_neighbors': 5, 'weights': 'distance'},
+        {'algorithm': 'ball_tree', 'leaf_size': 20, 'n_neighbors': 5, 'weights': 'distance'},
+        {'algorithm': 'kd_tree', 'leaf_size': 20, 'n_neighbors': 5, 'weights': 'distance'},
+        {'algorithm': 'kd_tree', 'leaf_size': 35, 'n_neighbors': 5, 'weights': 'distance'},
+        {'algorithm': 'ball_tree', 'leaf_size': 35, 'n_neighbors': 5, 'weights': 'distance'},
     ]
 
     log_reg_combinations = [
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
-        {'penalty': 'l1', 'solver': 'liblinear', 'multi_class': 'auto'},
+        {'C': 1.0, 'max_iter': 1000, 'multi_class': 'auto', 'penalty': 'l1', 'solver': 'liblinear'},
+        {'C': 4.500557675700499, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l1', 'solver': 'liblinear'},
+        {'C': 30.36771118035459, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
+        {'C': 30.36771118035459, 'max_iter': 1500, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
+        {'C': 30.36771118035459, 'max_iter': 1000, 'multi_class': 'auto', 'penalty': 'l2', 'solver': 'liblinear'},
     ]
+
     mlp_combinations = [
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
-        {'solver': 'lbfgs', 'max_iter': 400, 'random_state': 6},
+        {'hidden_layer_sizes': 10, 'max_iter': 500, 'random_state': 9, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 10, 'max_iter': 100, 'random_state': 9, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 500, 'random_state': 8, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 100, 'random_state': 8, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 9, 'max_iter': 100, 'random_state': 9, 'solver': 'lbfgs'},
     ]
+
     naive_bayes_combinations = [
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
-        {'alpha': 0.8, 'fit_prior': True},
+        {'alpha': 0.01, 'fit_prior': True},
+        {'alpha': 0.3, 'fit_prior': True},
+        {'alpha': 1.0, 'fit_prior': True},
+        {'alpha': 0.9, 'fit_prior': True},
         {'alpha': 0.8, 'fit_prior': True},
     ]
 

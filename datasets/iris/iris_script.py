@@ -36,11 +36,11 @@ if __name__ == '__main__':
         {'C': 10.116379797662075, 'max_iter': 2000, 'multi_class': 'auto', 'penalty': 'l1', 'solver': 'liblinear'},
     ]
     mlp_combinations = [
-        {'solver': 'lbfgs', 'max_iter': 1000, 'random_state': 3, 'hidden_layer_sizes': 8},
-        {'solver': 'lbfgs', 'max_iter': 100, 'random_state': 5, 'hidden_layer_sizes': 8},
-        {'solver': 'lbfgs', 'max_iter': 1500, 'random_state': 3, 'hidden_layer_sizes': 8},
-        {'solver': 'lbfgs', 'max_iter': 2000, 'random_state': 3, 'hidden_layer_sizes': 8},
-        {'solver': 'lbfgs', 'max_iter': 100, 'random_state': 8, 'hidden_layer_sizes': 8},
+        {'hidden_layer_sizes': 11, 'max_iter': 100, 'random_state': 8, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 10, 'max_iter': 500, 'random_state': 6, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 10, 'max_iter': 100, 'random_state': 6, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 11, 'max_iter': 100, 'random_state': 6, 'solver': 'lbfgs'},
+        {'hidden_layer_sizes': 10, 'max_iter': 500, 'random_state': 9, 'solver': 'lbfgs'}
     ]
     naive_bayes_combinations = [
         {'alpha': 0.01, 'fit_prior': True},
