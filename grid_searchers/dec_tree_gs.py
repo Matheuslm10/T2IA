@@ -1,3 +1,7 @@
+__author__ = "Aryslene Santos Bitencourt [RGA: 201519060122]"
+__author__ = "Felipe Alves Matos Caggi   [RGA: 201719060061]"
+__author__ = "Matheus Lima Machado       [RGA: 201519060068]"
+
 import pandas as pd
 from sklearn.model_selection import GridSearchCV
 from sklearn import tree

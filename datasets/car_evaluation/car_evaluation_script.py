@@ -1,3 +1,7 @@
+__author__ = "Aryslene Santos Bitencourt [RGA: 201519060122]"
+__author__ = "Felipe Alves Matos Caggi   [RGA: 201719060061]"
+__author__ = "Matheus Lima Machado       [RGA: 201519060068]"
+
 from datasets.data_normalizer import DataNormalizer as Normalizer
 from datasets.classifier_evaluation import EvaluateClassifiers
 
