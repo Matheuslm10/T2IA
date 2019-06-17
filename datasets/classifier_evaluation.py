@@ -28,17 +28,16 @@ def evaluate_classifier(classifier_combinations, x, y):
             comb.log_loss_list.append(test)
 
     for comb in classifier_combinations:
-        print()
+        print("¨¨¨¨¨¨¨¨")
         print(comb.classifier)
         comb.mean_accuracy = np.mean(comb.accuracies_list)
         comb.std_accuracy = np.std(comb.accuracies_list)
-        print("Accuracies: ", comb.accuracies_list)
         print("Accuracy (average):", comb.mean_accuracy)
-        print("Standard deviation of precision:", comb.std_accuracy)
+        print("Standard deviation of Accuracy:", comb.std_accuracy)
 
         comb.mean_log_loss = np.mean(comb.log_loss_list)
         comb.std_log_loss = np.std(comb.log_loss_list)
-        print("Log loss (average):", comb.mean_log_loss)
+        print("Log Loss (average):", comb.mean_log_loss)
         print("Standard deviation of Log Loss:", comb.std_log_loss)
 
 
